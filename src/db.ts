@@ -33,6 +33,10 @@ CREATE TABLE IF NOT EXISTS deliveries (
   creator_id TEXT NOT NULL,
   delivered_at TEXT NOT NULL
 );
+
+CREATE INDEX IF NOT EXISTS social_accounts_creator_idx ON social_accounts (creator_id);
+CREATE INDEX IF NOT EXISTS metrics_latest_idx ON metrics (account_id, captured_at DESC, id DESC, views);
+CREATE INDEX IF NOT EXISTS deliveries_creator_idx ON deliveries (creator_id, delivered_at);
 `;
 
 type SqlValue = string | number | bigint | null;
